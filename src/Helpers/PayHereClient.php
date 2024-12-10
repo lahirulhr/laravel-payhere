@@ -39,7 +39,10 @@ class PayHereClient
 
     private function setNotifyUrl()
     {
-        $this->notify_url = route('payhere.callback', $this->getCallbackKey());
+        if (empty($this->notify_url)) {
+            $this->notify_url = route('payhere.callback', $this->getCallbackKey());
+        }
+        return $this->notify_url;
     }
 
     public function notifyUrl(string $url)
